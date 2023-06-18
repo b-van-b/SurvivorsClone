@@ -1,7 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh8f3vw2ef1g"]
+[gd_scene load_steps=7 format=3 uid="uid://dh8f3vw2ef1g"]
 
 [ext_resource type="Texture2D" uid="uid://dnv7oey4pwg16" path="res://Textures/Enemy/kolbold_weak.png" id="1_2t3y3"]
 [ext_resource type="Script" path="res://Enemy/enemy.gd" id="1_mb38p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yaml"]
+atlas = ExtResource("1_2t3y3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5obi"]
+atlas = ExtResource("1_2t3y3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uf4rq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yaml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5obi")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_17tb6"]
 radius = 15.0
@@ -10,9 +32,9 @@ radius = 15.0
 motion_mode = 1
 script = ExtResource("1_mb38p")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_2t3y3")
-hframes = 2
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uf4rq")
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 3)

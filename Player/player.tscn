@@ -1,7 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://dn1tlat25mhnw"]
+[gd_scene load_steps=8 format=3 uid="uid://dn1tlat25mhnw"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_aqsfq"]
 [ext_resource type="Texture2D" uid="uid://ble4654j14gs1" path="res://Textures/Player/player_sprite.png" id="1_r2i8d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0pqs"]
+atlas = ExtResource("1_r2i8d")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcghh"]
+atlas = ExtResource("1_r2i8d")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ddy2"]
+atlas = ExtResource("1_r2i8d")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nxs82"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0pqs")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcghh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ddy2")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_exw00"]
 radius = 14.0357
@@ -10,9 +44,9 @@ radius = 14.0357
 motion_mode = 1
 script = ExtResource("1_aqsfq")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_r2i8d")
-hframes = 2
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nxs82")
+animation = &"stand"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
