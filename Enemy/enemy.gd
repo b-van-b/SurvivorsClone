@@ -11,4 +11,8 @@ func _ready():
 func _physics_process(_delta):
 	var direction : Vector2 = global_position.direction_to(player.global_position)
 	velocity = direction * movement_speed
+	if velocity.x > 0:
+		sprite.flip_h = true
+	elif velocity.x < 0:
+		sprite.flip_h = false
 	move_and_slide()
